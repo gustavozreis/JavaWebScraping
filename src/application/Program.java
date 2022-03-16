@@ -3,6 +3,7 @@ package application;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 public class Program {
 	
@@ -13,9 +14,10 @@ public class Program {
 		try {
 			Document doc = Jsoup.connect(url).get();
 			
-			String fullHtml = doc.outerHtml();
+			Elements frases = doc.getElementsByClass("frase fr");
+			String frasesString = frases.text();
 			
-			System.out.println(fullHtml);
+			System.out.println(frasesString);
 		}
 		catch (Exception ex) {
 			ex.printStackTrace();
