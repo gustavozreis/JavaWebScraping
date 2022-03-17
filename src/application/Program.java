@@ -1,7 +1,9 @@
 package application;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -18,7 +20,7 @@ public class Program {
 	ArrayList<String> listaDeFrases = new ArrayList<String>();
 	
 	
-	for (Integer i=1; i<10; i++ ) {
+	for (Integer i=1; i<3000; i++ ) {
 	
 		try {
 			// conecta o programa ao website
@@ -47,9 +49,23 @@ public class Program {
 				
 			}
 	
+		String path = "D:\\APRENDERJAVA\\gzr-eclipse\\_ARQUIVOS\\FrasesCoachorro.txt";
+	
 		for (int i=0; i<listaDeFrases.size(); i++) {
-			System.out.println(listaDeFrases.get(i));
+			
+			try (BufferedWriter bw = new BufferedWriter(new FileWriter(path))) {
+				for (String line : listaDeFrases) {
+					bw.write(line);
+					bw.write(",");
+					bw.newLine();
+				}
+			}
+			catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			//System.out.println(listaDeFrases.get(i));
 		}
-		System.out.println("Quantidade de Frases Recuperadas: " + listaDeFrases.size());
+		//System.out.println("Quantidade de Frases Recuperadas: " + listaDeFrases.size());
 	}
 }
