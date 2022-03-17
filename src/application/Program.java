@@ -15,9 +15,10 @@ public class Program {
 			Document doc = Jsoup.connect(url).get();
 			
 			Elements frases = doc.getElementsByClass("frase fr");
-			String frasesString = frases.text();
 			
-			System.out.println(frasesString);
+			for (Element frase : frases) {
+				System.out.println(frase.text());
+			}
 		}
 		catch (Exception ex) {
 			ex.printStackTrace();
