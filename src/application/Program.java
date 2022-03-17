@@ -20,7 +20,7 @@ public class Program {
 	ArrayList<String> listaDeFrases = new ArrayList<String>();
 	
 	
-	for (Integer i=1; i<3000; i++ ) {
+	for (Integer i=1; i<50; i++ ) {
 	
 		try {
 			// conecta o programa ao website
@@ -34,12 +34,27 @@ public class Program {
 						&& !frase.text().toUpperCase().contains("DEUS")
 						&& !frase.text().toUpperCase().contains("IGREJA")
 						&& !frase.text().toUpperCase().contains("CRISTO")
+						&& !frase.text().toUpperCase().contains("EVANGELHO")
 						&& frase.text().length() < 65) {
-						
-					 	String aspas = "\"";
-					 	String fraseComAspas = aspas + frase.text() + aspas;
-						listaDeFrases.add(fraseComAspas);	
-						}
+					
+							// transforma a frase recuperada em string
+							String fraseConvertida = frase.text(); 
+							
+							for (int j = 0; j < fraseConvertida.length(); j++) {
+								if (fraseConvertida.charAt(j) == '\"') {
+									// remove as aspas
+									fraseConvertida = fraseConvertida.replace("\"", "");
+								}
+							}
+							
+							if (fraseConvertida.charAt(0) == '!') {
+								fraseConvertida = fraseConvertida.replaceFirst("!", "");
+							}
+							
+						 	String aspas = "\"";
+						 	String fraseComAspas = aspas + fraseConvertida + aspas;
+							listaDeFrases.add(fraseComAspas);	
+							}
 			}		
 			
 			}
