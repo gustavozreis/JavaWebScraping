@@ -17,7 +17,7 @@ public class Program {
 	// instancia da lista de frases a ser preenchida
 	ArrayList<String> listaDeFrases = new ArrayList<String>();
 	
-	for (Integer i=1; i<50; i++ ) {
+	for (Integer i=1; i<500; i++ ) {
 	
 		try {
 			// conecta o programa ao website
@@ -26,6 +26,11 @@ public class Program {
 			Elements frases = doc.getElementsByClass("frase fr");
 			// adiciona a frase na lista de frases
 			for (Element frase : frases) {
+				if(!frase.text().toUpperCase().contains("JESUS") 
+						&& !frase.text().toUpperCase().contains("DEUS")
+						&& !frase.text().toUpperCase().contains("IGREJA")
+						&& !frase.text().toUpperCase().contains("CRISTO")
+						&& frase.text().length() < 65)
 				listaDeFrases.add(frase.text());
 			}
 			
